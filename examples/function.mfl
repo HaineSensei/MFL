@@ -1,0 +1,8 @@
+fn add_2(x: int) -> int {
+    x + 2
+}
+
+fn main() {
+    let x : int = 4
+    println(add_2(x));
+}
