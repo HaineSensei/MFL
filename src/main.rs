@@ -47,7 +47,7 @@ pub mod mfl_regex {
         Regex::new(NUMBER_STR).unwrap()
     });
 
-    pub const OPERATOR_STR : &str = r"[\+\*\-/%]|(?:<=)|(?:<(?!=))|(?:>=)|(?:>(?!=))|(?:==)";
+    pub const OPERATOR_STR : &str = r"(?P<add>\+)|(?P<mul>\*)|(?P<sub>\-)|(?P<div>/)|(?P<mod>%)|(?P<lte><=)|(?P<lt><(?!=))|(?P<gte>>=)|(?P<gt>>(?!=))|(?P<eq>==)";
     pub static OPERATOR : LazyLock<Regex> = LazyLock::new(|| {
         Regex::new(OPERATOR_STR).unwrap()
     });
@@ -55,5 +55,5 @@ pub mod mfl_regex {
 }
 
 fn main() {
-    
+    println!("HEYA!");
 }
