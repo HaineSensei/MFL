@@ -2,6 +2,11 @@ pub mod mfl_regex {
     use regex::Regex;
     use std::sync::LazyLock;
 
+    pub const COMMENT_STR : &str = r"//[^\n]*";
+    pub static COMMENT : LazyLock<Regex> = LazyLock::new(|| {
+        Regex::new(COMMENT_STR).unwrap()
+    });
+
     pub const LET_STR : &str = r"let";
     pub static LET : LazyLock<Regex> = LazyLock::new(|| {
         Regex::new(LET_STR).unwrap()
@@ -47,11 +52,15 @@ pub mod mfl_regex {
         Regex::new(NUMBER_STR).unwrap()
     });
 
-    pub const OPERATOR_STR : &str = r"(?P<add>\+)|(?P<mul>\*)|(?P<sub>\-)|(?P<div>/)|(?P<mod>%)|(?P<lte><=)|(?P<lt><(?!=))|(?P<gte>>=)|(?P<gt>>(?!=))|(?P<eq>==)";
+    pub const OPERATOR_STR : &str = r"(?P<add>\+)|(?P<mul>\*)|(?P<sub>\-)|(?P<div>/)|(?P<mod>%)|(?P<lte><=)|(?P<lt><(?!=))|(?P<gte>>=)|(?P<gt>>(?!=))|(?P<eq>==)|(?P<neq>!=)|(?P<not>!(?!=))|(?P<and>&&)|(?P<or>\|\|)";
     pub static OPERATOR : LazyLock<Regex> = LazyLock::new(|| {
         Regex::new(OPERATOR_STR).unwrap()
     });
 
+    pub const PUNCTUATION_STR : &str = r"(?P<assign>=)|(?P<lp>\()|(?P<rp>\))|(?P<lb>\{)|(?P<rb>\})|(?P<comma>,)|(?P<sc>;)|(?P<colon>:)|(?P<arrow>\->)";
+    pub static PUNCTUATION : LazyLock<Regex> = LazyLock::new(|| {
+        Regex::new(PUNCTUATION_STR).unwrap()
+    });
 }
 
 fn main() {
